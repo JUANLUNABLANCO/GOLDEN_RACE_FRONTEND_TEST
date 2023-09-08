@@ -220,7 +220,11 @@ git commit -m "nest installations, configurations, some initial modules and dock
 git branch -M main
 git remote add origin https://github.com/JUANLUNABLANCO/GOLDEN_RACE_FRONTEND_TEST.git
 git push -u origin main
+git branch develop
+git checkout develop
+git flow init
 ```
+
 
 
 
