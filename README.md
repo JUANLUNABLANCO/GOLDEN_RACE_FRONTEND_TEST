@@ -268,6 +268,34 @@ git flow feature start exercice1
 
 #### create some components, services, guards, interceptors, module and routing
 
+Let´s create a module for admin
+```
+ng g m admin --routing
+```
+This module, will be charged by lazy loading. We need a component inside this module, let´s create it.
+
+```bash
+ng g c components/overview --module=admin
+```
+
+If you go to admin button you can see overview works!
+
+if you run tests, you can see every thing is ok, we have tested the overview component adding in the html some ref data property
+```bash
+ng test
+```
+
+##### Recapitulation
+we have app component, admin module with lazy loading, some routing for some components (login, register, user profile) but we dont have this components, let´s make it.
+
+But beofre it´the best moment to upload some changes
+```bash
+git status
+git add .
+git commit -m "admin module with routing and lazy loading, unit testing ok"
+git push
+```
+
 
 
 
