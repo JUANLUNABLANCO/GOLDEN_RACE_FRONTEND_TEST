@@ -150,22 +150,80 @@ npm run docker:db:dev
 npm run nest:dev
 ```
 
+
+lets do some project with angular CLI
+```bash
+npm install -g @angular/cli
+cd exercice1
+ng new e01_frontend
+cd e01_frontend
+```
+
+In the tsconfig.json inside the ng project I´ve added this line,
+```tsconfig.json
+"strictPropertyInitialization": false,
+```
+is a configuration option used to enable or disable strict property initialization checks in TypeScript.
+This forces you to initialize even the constructors of the created classes, which is a bit cumbersome.
+
+I added this scripts in th package.json
+```package.json
+    "ng:dev": "ng serve  --open",
+    "build:prod": "ng build --configuration=production",
+    "build:dev": "ng build --configuration development",
+```
+
+I have modified some configuration to make sure that when we build it, it´ll do correctly
+```angular.json
+production: { ...
+
+"fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ] ...
+
+development: {...
+  "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.dev.ts"
+                }
+              ] ...
+}
+```
+of course we have three environment variables for angular and we could configure another one for testing, if we need.
+
+![variables de entorno angular](./documentation/screenshoots/Screenshot_01_ng-env.png)
+
+let´s serve ng project
+```bash
+npm run ng:dev
+```
+go to http://localhost:4200 in browser
+
 ##### Recapitulation
-We have a server with nest running in localhost:3000, and a service docker conatiner with postgresSQL in port 5432
+We have a service docker container with postgresSQL in port 5432, npm run docker:db:dev
+We have a server with nest running in http://localhost:3000, npm run nest:dev
+We have a frontend app web with angular running in http://localhost:4200, npm run nd:dev
 
-We have a simple two modules in our api user and auth, we want after a product module, but first we go to install and configurate angular frontned project
+We have a simple two modules in our api 'user' and 'auth', we´ll want after a product module too.
 
 
-#### So in this point
+##### So in this point
 we are going to create a repo in git hub for this and upload every thing
 
 ```bash
 git add .
-git commit -m "nest installations, configurations, some initial modules and docker postgresSQL"
+git commit -m "nest installations, configurations, some initial modules and docker postgresSQL, and ng project installation and configuration"
 git branch -M main
 git remote add origin https://github.com/JUANLUNABLANCO/GOLDEN_RACE_FRONTEND_TEST.git
 git push -u origin main
 ```
+
+
+
 
 
 time spent so far: Nest 3h + ng 1h
@@ -186,6 +244,14 @@ time spent so far: Nest 3h + ng 1h
 - After submitting the form, if the form is invalid show the validation errors
 - Hide the messages after the form reset
 - Implement unit tests for the component
+
+
+#### git flow
+we are going to create a branch develop to upload our tasks and we´ll use git flow.
+```bash
+git branch develop
+git flow init???
+```
 
 ### EXERCISE 2
 
