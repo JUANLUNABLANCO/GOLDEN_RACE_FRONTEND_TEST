@@ -24,13 +24,23 @@ import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
 
 // # INTERCEPTORS
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
-// TODO create a jwt interceptor
+import { JwtInterceptor } from './interceptors/jwt.interceptor';
+
 // # Components
-// TODO login, register, userprofile components
+import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
+import { UserProfileComponent } from './components/user-profile/user-profile.component';
+import { ProductsComponent } from './components/products/products.component';
+import { ProductDetailComponent } from './components/product-detail/product-detail.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    LoginComponent,
+    RegisterComponent,
+    UserProfileComponent,
+    ProductsComponent,
+    ProductDetailComponent
   ],
   imports: [
     BrowserModule,
@@ -51,7 +61,8 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
   ],
   providers: [
     JwtHelperService,
-    { provide: JWT_OPTIONS, useValue: JWT_OPTIONS }
+    { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]
 })

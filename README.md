@@ -191,8 +191,26 @@ development: {...
                   "with": "src/environments/environment.dev.ts"
                 }
               ] ...
+  // important to save the cors, when they are not still in production enabled. 
+  // This configuration causes localhost:3000 to behave as if it were localhost:4200, allowing the server to pass the request as if it were internal
+  "options": {
+            "proxyConfig": "src/proxy.conf.json"
+          },
 }
 ```
+the content of the file proxy.conf.json is that
+```proxy.conf.json
+{
+  "/api": {
+    "target": "http://localhost:3000",
+    "secure": false
+  }
+}
+```
+any request made from angular that starts in api/...
+will transform it directly to http://localhost:3000/api
+
+
 of course we have three environment variables for angular and we could configure another one for testing, if we need.
 
 ![variables de entorno angular](./documentation/screenshoots/Screenshot_01_ng-env.png)
@@ -285,7 +303,7 @@ if you run tests, you can see every thing is ok, we have tested the overview com
 ng test
 ```
 
-##### Recapitulation
+#### Recapitulation
 we have app component, admin module with lazy loading, some routing for some components (login, register, user profile) but we dont have this components, let´s make it.
 
 But beofre it´the best moment to upload some changes
@@ -297,12 +315,102 @@ git push
 ```
 
 
+#### We create all the components we need and the routing
+Creemos los componentes que necesitamos
+```
+ng g c components/login
+ng g c components/register
+ng g c components/user-profile
+ng g c components/products
+ng g c components/product-detail
+```
+
+#### We´ll create the logic and the ui for every component
+begin for login, register and user profile, to make some others things like authguards, interfaces, interceptors, etc.
+
+Let´s create a service for authenticacion
+```bash
+ng g s services/auth/authentication
+```
+
+we need some interfaces for login and register
+```bash
+ng g interface interfaces/auth
+```
+
+the user service
+```bash
+ng g s services/user/user
+```
+
+and the user interface
+```bash
+ng g interface interfaces/user
+```
+
+#### Guards and interceptors
+Let´s create a guard for auth
+```bash
+ng g guard guards/auth
+```
+choose canActivate
+
+you should have instaled @auth0/angular-jwt
+if not ...
+```bash
+npm i @auth0/angular-jwt
+```
+
+```bash
+ng generate guard guards/admin
+```
+To make the fun complete, we are going to generate an interceptor that adds the access_token to all the routes, from the moment the user logs in. This way we can check in our guards if the user is authenticated or not, also for greater security we should check if the user who is trying to update their profile, for example, is the user themselves, but this is already going too far.
+```bash
+ng g interceptor interceptors/jwt
+```
+y modificamos el app.module para usarlo
+```app.module.ts
+
+// # INTERCEPTORS
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { JwtInterceptor } from './interceptors/jwt.interceptor';
+
+  ...
+
+providers: [
+    JwtHelperService,
+    { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }
+  ],
+```
+
+#### Recapitulation 
+we have all of our components, except the logic of the products. We can register and login with any user,
+```json
+{ 
+  name: anyone,
+  email: admin@admin.com,
+  password: test12345678
+}
+```
+we can register an admin-user 
+```json
+{ 
+  name: test,
+  email: admin@admin.com,
+  password: test12345678
+}
+```
+we can login with the admin and try to go to the route '/admin'
 
 
-
-
-
-
+upload changes
+```bash
+git status
+git add .
+git commit -m "register, login, auth, guards, interceptors"
+git push
+```
 
 
 

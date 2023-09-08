@@ -33,8 +33,10 @@ export class UserService {
         // SOLO para testing mode
         if (process.env.CONTROL === 'prod' || process.env.CONTROL === 'dev') {
           newUser.role = UserRole.USER;
-        } else {
-          if (user.email === 'admin@admin.com') newUser.role = UserRole.ADMIN;
+        }
+        if (user.email == 'admin@admin.com') {
+          newUser.role = UserRole.ADMIN;
+          console.log('#### ADMIN REGISTER ####', newUser);
         }
         // SOLO para testing mode
 

@@ -37,9 +37,9 @@ let UserService = class UserService {
             if (process.env.CONTROL === 'prod' || process.env.CONTROL === 'dev') {
                 newUser.role = user_interface_1.UserRole.USER;
             }
-            else {
-                if (user.email === 'admin@admin.com')
-                    newUser.role = user_interface_1.UserRole.ADMIN;
+            if (user.email == 'admin@admin.com') {
+                newUser.role = user_interface_1.UserRole.ADMIN;
+                console.log('#### ADMIN REGISTER ####', newUser);
             }
             return (0, rxjs_1.from)(this.userRepository.save(newUser)).pipe((0, operators_1.map)((user) => {
                 const { password, ...result } = user;
