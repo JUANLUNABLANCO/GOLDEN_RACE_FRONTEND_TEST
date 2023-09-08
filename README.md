@@ -197,11 +197,31 @@ of course we have three environment variables for angular and we could configure
 
 ![variables de entorno angular](./documentation/screenshoots/Screenshot_01_ng-env.png)
 
+##### others things
+Although the exercise does not ask for it, to demonstrate other skills that are not in any of them I have decided to install angular material in this exercise and also make an access menu for users, I hope this is valued positively, in the other exercises I will stick exclusively to what is asked.
+
+```bash
+ng add @angular/material
+npm install --save @auth0/angular-jwt
+```
+
+##### run
+
 let´s serve ng project
 ```bash
 npm run ng:dev
 ```
 go to http://localhost:4200 in browser
+
+
+##### testing
+let´s do some unit testing for the app.component
+```bash
+ng test
+```
+![testing app component](./documentation/screenshoots/Screenshot_02_ng-test-app-component.png)
+
+![ui right now](./documentation/screenshoots/Screenshot_03_ui-now.png)
 
 ##### Recapitulation
 We have a service docker container with postgresSQL in port 5432, npm run docker:db:dev
@@ -223,16 +243,7 @@ git push -u origin main
 ```
 
 
-
-
-
 time spent so far: Nest 3h + ng 1h
-
-
-
-
-
-
 
 
 ### EXERCISE 1
@@ -250,8 +261,28 @@ time spent so far: Nest 3h + ng 1h
 we are going to create a branch develop to upload our tasks and we´ll use git flow.
 ```bash
 git branch develop
-git flow init???
+git checkout develop
+git flow init
+git flow feature start exercice1
 ```
+
+#### create some components, services, guards, interceptors, module and routing
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ### EXERCISE 2
 
