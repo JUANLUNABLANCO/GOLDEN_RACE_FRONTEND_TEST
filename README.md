@@ -368,14 +368,14 @@ To make the fun complete, we are going to generate an interceptor that adds the 
 ```bash
 ng g interceptor interceptors/jwt
 ```
-y modificamos el app.module para usarlo
+and I modify the app.module to use it
 ```app.module.ts
 
 // # INTERCEPTORS
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { JwtInterceptor } from './interceptors/jwt.interceptor';
 
-  ...
+      ...
 
 providers: [
     JwtHelperService,
@@ -384,19 +384,34 @@ providers: [
   ],
 ```
 
-#### Recapitulation 
+One thing more to intercept http-errors from api
+```bash
+ng g interceptor interceptors/htt-error
+```
+of course we have to put it in the app.module, like this
+```bash
+    ...
+  providers: [
+    ...
+    { provide: HTTP_INTERCEPTORS, useClass: HttpErrorInterceptor, multi: true }
+```
+
+And we have to manage http response errors in backend too
+
+
+#### Recapitulation
 we have all of our components, except the logic of the products. We can register and login with any user,
-```json
-{ 
-  name: anyone,
-  email: admin@admin.com,
+```some.json
+{
+  name: test1,
+  email: test@test.com,
   password: test12345678
 }
 ```
-we can register an admin-user 
-```json
-{ 
-  name: test,
+we can register an admin-user
+```some.json
+{
+  name: test2,
   email: admin@admin.com,
   password: test12345678
 }
@@ -412,7 +427,63 @@ git commit -m "register, login, auth, guards, interceptors"
 git push
 ```
 
+#### TIME INVESTED SO FAR
 
+Nest     10h
+ng       5h
+TESTING  1H
+Others   2H
+------------
+total    18H
+
+
+#### I´m going to do some Unit Tests, for some components and services
+
+
+
+// PENDIENTE PARA MAÑANA
+testing ng services, coverage
+testing e2e cypress
+testing backend postman
+documentation
+delete all the console.logs
+
+products with images, ...
+product logic component of exercice1
+
+
+// POSIBLES MEJORAS
+user-profile access by jwtoken.decoded -> user.id
+sign-off
+si el login corresponde al admin conducirlo a '/admin', si es un usuario al profile del usuario
+
+
+
+#### FUNCTIONING
+
+console 1: postgres DB
+```bash
+cd exercice1/e01_backend
+npm run docker:db:dev
+```
+
+console 2: nestJS backend
+```bash
+cd exercice1/e01_backend
+npm run nest:dev
+```
+
+console 3: ng frontned
+```bash
+cd exercice1/e01_frontend
+npm run ng:dev
+```
+
+console 4: ng testing
+```bash
+cd exercice1/e01_frontend
+ng test
+```
 
 
 

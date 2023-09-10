@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AuthenticationService } from '../../services/auth/authentication.service';
 import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { throwError } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -42,7 +43,8 @@ export class LoginComponent implements OnInit{
       return;
     }
     this.authService.login(this.formLogin.value).pipe(
-      map(token => this.router.navigate(['/store']))
+      map(({ token, userId }) => {
+        this.router.navigate([`/users/${userId}`])})
     ).subscribe();
   }
 }

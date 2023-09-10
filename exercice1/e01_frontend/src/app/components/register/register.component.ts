@@ -1,24 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { map } from 'rxjs/operators';
 // # reactive forms
-import { FormGroup, FormBuilder, Validators, AbstractControl, ValidationErrors, FormControl } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, ValidationErrors, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthenticationService } from '../../services/auth/authentication.service';
-import { UserService } from '../../services/user/user.service';
+import { UserService } from '../../services/users/user.service';
 import { Observable, of, from } from 'rxjs';
 
-class CustomValidators {
-  static passwordsMatch(control: AbstractControl): ValidationErrors | null {
-    const password = control.get('password').value;
-    const confirmPassword = control.get('confirmPassword').value;
+import { CustomValidators } from '../../shared/utilities/custom.validators';
 
-    if((password === confirmPassword) ) { 
-      return null;
-    } else {
-      return { passwordsMatching: true };
-    }
-  }
-}
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',

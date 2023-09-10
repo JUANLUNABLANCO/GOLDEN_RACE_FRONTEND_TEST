@@ -26,7 +26,6 @@ let UserIsUserGuard = class UserIsUserGuard {
         const user = request.user.user;
         return this.userService.findOne(user.id).pipe((0, rxjs_1.map)((user) => {
             let hasPermission = false;
-            console.log('#### USER IS USER GUARD: ', user.id, params.id);
             if (user.id === Number(params.id)) {
                 hasPermission = true;
             }

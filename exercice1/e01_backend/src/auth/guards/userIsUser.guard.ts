@@ -27,7 +27,7 @@ export class UserIsUserGuard implements CanActivate {
       map((user: User) => {
         let hasPermission = false;
 
-        console.log('#### USER IS USER GUARD: ', user.id, params.id);
+        // console.log('#### USER IS USER GUARD: ', user.id, params.id);
 
         if (user.id === Number(params.id)) {
           hasPermission = true;

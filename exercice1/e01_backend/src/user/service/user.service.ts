@@ -1,4 +1,9 @@
-import { Injectable } from '@nestjs/common';
+import {
+  HttpException,
+  HttpStatus,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { UserEntity } from '../model/user.entity';
 import { Repository } from 'typeorm';
@@ -14,6 +19,7 @@ import {
   IPaginationOptions,
 } from 'nestjs-typeorm-paginate';
 import { Like } from 'typeorm';
+import { error } from 'console';
 @Injectable()
 export class UserService {
   constructor(
@@ -36,7 +42,7 @@ export class UserService {
         }
         if (user.email == 'admin@admin.com') {
           newUser.role = UserRole.ADMIN;
-          console.log('#### ADMIN REGISTER ####', newUser);
+          // console.log('#### ADMIN REGISTER ####', newUser);
         }
         // SOLO para testing mode
 
@@ -181,7 +187,7 @@ export class UserService {
   }
 
   login(user: User): Observable<string> {
-    console.log('#### User: ', user);
+    // console.log('#### User: ', user);
     return this.validateUser(user.email, user.password).pipe(
       switchMap((user: User) => {
         if (user) {
@@ -189,43 +195,51 @@ export class UserService {
             .generateJWT(user)
             .pipe(map((jwt: string) => jwt));
         } else {
-          return 'Wrong Credentials';
+          // throw new NotFoundException('2 Wrong Credentials');
         }
       }),
     );
   }
 
   private validateUser(email: string, password: string): Observable<User> {
-    console.log('#### PASSWORD: ', password);
+    // console.log('#### PASSWORD: ', password);
     return from(
       this.findByEmail(email).pipe(
         switchMap((user: User) => {
-          // TODO if (user) { .... } // porque puede ser que no exista y estamos comparando passwords que  no hay en BD
-          console.log('#### User BD: ', user);
-          console.log('#### Passwords: ', password, user.password);
-          return this.authService
-            .comparePasswords(password, user.password)
-            .pipe(
-              map((match: boolean) => {
-                if (match) {
-                  const { password, ...result } = user;
-                  return result;
-                } else {
-                  throw Error;
-                }
-              }),
-            );
+          if (user) {
+            // TODO if (user) { .... } // porque puede ser que no exista y estamos comparando passwords que  no hay en BD
+            // console.log('#### User BD: ', user);
+            // console.log('#### Passwords: ', password, user.password);
+            return this.authService
+              .comparePasswords(password, user.password)
+              .pipe(
+                map((match: boolean) => {
+                  if (match) {
+                    const { password, ...result } = user;
+                    return result;
+                  } else {
+                    throw new HttpException(
+                      '3 Wrong Credentials',
+                      HttpStatus.BAD_REQUEST,
+                    );
+                  }
+                }),
+              );
+          }
+          throw new HttpException('4 Wrong Credentials', HttpStatus.NOT_FOUND);
         }),
       ),
     );
   }
 
   private findByEmail(email: string): Observable<User> {
-    return from(
-      this.userRepository.findOne({
-        select: ['id', 'name', 'email', 'role', 'profileImage', 'password'],
-        where: { email: email },
-      }),
-    );
+    const user = this.userRepository.findOne({
+      select: ['id', 'name', 'email', 'role', 'profileImage', 'password'],
+      where: { email: email },
+    });
+    if (!user) {
+      throw new HttpException('5 User not found', HttpStatus.NOT_FOUND);
+    }
+    return from(user);
   }
 }

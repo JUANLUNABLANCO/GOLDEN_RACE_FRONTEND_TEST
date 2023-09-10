@@ -12,6 +12,9 @@ import {
   UploadedFile,
   Request,
   Response,
+  NotFoundException,
+  HttpException,
+  HttpStatus,
 } from '@nestjs/common';
 
 import { UserService } from '../service/user.service';
@@ -126,9 +129,9 @@ export class UserController {
   @Post('upload')
   @UseInterceptors(FileInterceptor('file', storage))
   uploadFile(@UploadedFile() file, @Request() req): Observable<File> {
-    const user: User = req.user.user; // a través del login realizado, en la primera request, el user queda registrado y disponible en la request ¡Maravilloso!
+    const user: User = req.user.user;
 
-    console.log('#### Upload: ', this.configService.get('UPLOAD_IMAGE_URL')); // aquí si funciona
+    // console.log('#### Upload: ', this.configService.get('UPLOAD_IMAGE_URL'));
     console.log('#### file name: ', file.filename);
 
     return this.userService

@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { map, switchMap, tap } from 'rxjs/operators';
+import { catchError, map, switchMap, tap } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
 import { LoginForm, RegisterForm } from '../../interfaces/auth.interface';
 import { JwtHelperService } from '@auth0/angular-jwt';
-import { UserRole } from '../../interfaces/user'
+import { UserRole } from '../../interfaces/user.interface'
 
 export const JWT_NAME = 'access_token';
 @Injectable({
@@ -23,9 +23,10 @@ export class AuthenticationService {
       map((token) => {
         // TODO servicio genérico para grabado y recuperación de datos de la app en el localStorage
         localStorage.setItem(JWT_NAME, token.access_token);
-        return token;
+        const userId = this.jwtHelper.decodeToken(token.access_token).user.id;
+        return { token, userId };
       })
-    )
+    );
   }
   register(user: RegisterForm) {
     return this.http.post<any>('api/users/', user).pipe(
@@ -41,7 +42,7 @@ export class AuthenticationService {
   getUserId(): Observable<number> {
     return of(localStorage.getItem(JWT_NAME)).pipe(
       switchMap((jwt: any) =>  of(this.jwtHelper.decodeToken(jwt)).pipe(
-        tap((jwt: any) => console.log('decodedToken ', jwt)),
+        tap((jwt: any) => console.log('### decodedToken ', jwt)),
         map((jwt: any) => jwt.user.id)
       )
       )
@@ -50,10 +51,13 @@ export class AuthenticationService {
 
   userIsAdmin(): boolean {
     const jwt = localStorage.getItem(JWT_NAME);
-    const decodedToken = this.jwtHelper.decodeToken(jwt);
-    const role =  decodedToken.user.role;
-    console.log('#### ROLE: ', role);
-    if (role === UserRole.ADMIN) return true;
+    if(jwt) {
+      const decodedToken = this.jwtHelper.decodeToken(jwt);
+      const role =  decodedToken.user.role;
+      console.log('### ROLE: ', role);
+      if (role === UserRole.ADMIN) return true;
+    }
+    console.log('### THERE IS NOT USER AUTHENTICATED JET ###');
     return false;
   }
 }

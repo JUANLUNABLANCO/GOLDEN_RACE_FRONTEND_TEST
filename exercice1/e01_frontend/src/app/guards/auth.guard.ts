@@ -5,6 +5,7 @@ import { CanActivate, Router } from '@angular/router';
 @Injectable({
   providedIn: 'root'
 })
+// this is the old way to implement it before version 15, now it is deprecated. I have in adminGuard the new one.
 export class AuthGuard {
 
   constructor(

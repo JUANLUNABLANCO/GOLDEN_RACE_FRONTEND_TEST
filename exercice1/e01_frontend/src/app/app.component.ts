@@ -20,7 +20,7 @@ export class AppComponent {
     }
   ];
   constructor (private router: Router) {
-    console.log('Enviroment Control: ', environment.CONTROL); // only in development to see which environment we are running
+    console.log('### Enviroment Control: ', environment.CONTROL); // only in development to see which environment we are running
   }
   // Menu logic
   navigateTo(value: string) {

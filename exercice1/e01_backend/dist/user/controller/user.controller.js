@@ -82,7 +82,6 @@ let UserController = class UserController {
     }
     uploadFile(file, req) {
         const user = req.user.user;
-        console.log('#### Upload: ', this.configService.get('UPLOAD_IMAGE_URL'));
         console.log('#### file name: ', file.filename);
         return this.userService
             .updateOne(user.id, { profileImage: file.filename })

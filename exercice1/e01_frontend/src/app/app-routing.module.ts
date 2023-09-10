@@ -12,7 +12,7 @@ const routes: Routes = [
   {
     path: 'admin',
     loadChildren: () => import('./admin/admin.module').then( m => m.AdminModule),
-    canActivate: [AuthGuard, AdminGuard]
+    canActivate: [AdminGuard]
   },
   {
     path: 'register',
@@ -25,9 +25,16 @@ const routes: Routes = [
   {
     path: 'users',
     children:[
+      // FOR EXAMPLE THE ADMIN NEED TO SEND MESSAGES TO USERS
+      // {
+      //   path: '',
+      //   component: UsersComponent,
+      //   canActivate: [AdminGuard]
+      // },
       {
         path: ':id',
-        component: UserProfileComponent
+        component: UserProfileComponent,
+        canActivate: [AuthGuard]
       }
     ]
   },
@@ -43,6 +50,12 @@ const routes: Routes = [
       }
     ]
   },
+  // NEXT STEEPS, one user need to update his profile
+  // {
+  //   path: 'update-profile',
+  //   component: UpdateUserProfileComponent,
+  //   canActivate: [AuthGuard, userIsUserGuard]
+  // }
   {
     // routes that not exists prevent errors in console
     path: '**',

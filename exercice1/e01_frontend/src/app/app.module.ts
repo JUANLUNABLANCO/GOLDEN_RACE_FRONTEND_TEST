@@ -32,6 +32,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { ProductsComponent } from './components/products/products.component';
 import { ProductDetailComponent } from './components/product-detail/product-detail.component';
+import { HttpErrorInterceptor } from './interceptors/http-error.interceptor';
 
 @NgModule({
   declarations: [
@@ -62,7 +63,8 @@ import { ProductDetailComponent } from './components/product-detail/product-deta
   providers: [
     JwtHelperService,
     { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
-    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: HttpErrorInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]
 })

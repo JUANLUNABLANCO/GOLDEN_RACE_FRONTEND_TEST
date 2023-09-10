@@ -39,7 +39,6 @@ let UserService = class UserService {
             }
             if (user.email == 'admin@admin.com') {
                 newUser.role = user_interface_1.UserRole.ADMIN;
-                console.log('#### ADMIN REGISTER ####', newUser);
             }
             return (0, rxjs_1.from)(this.userRepository.save(newUser)).pipe((0, operators_1.map)((user) => {
                 const { password, ...result } = user;
@@ -142,7 +141,6 @@ let UserService = class UserService {
         return (0, rxjs_1.from)(this.userRepository.update(id, user));
     }
     login(user) {
-        console.log('#### User: ', user);
         return this.validateUser(user.email, user.password).pipe((0, operators_1.switchMap)((user) => {
             if (user) {
                 return this.authService
@@ -150,33 +148,36 @@ let UserService = class UserService {
                     .pipe((0, operators_1.map)((jwt) => jwt));
             }
             else {
-                return 'Wrong Credentials';
             }
         }));
     }
     validateUser(email, password) {
-        console.log('#### PASSWORD: ', password);
         return (0, rxjs_1.from)(this.findByEmail(email).pipe((0, operators_1.switchMap)((user) => {
-            console.log('#### User BD: ', user);
-            console.log('#### Passwords: ', password, user.password);
-            return this.authService
-                .comparePasswords(password, user.password)
-                .pipe((0, operators_1.map)((match) => {
-                if (match) {
-                    const { password, ...result } = user;
-                    return result;
-                }
-                else {
-                    throw Error;
-                }
-            }));
+            if (user) {
+                return this.authService
+                    .comparePasswords(password, user.password)
+                    .pipe((0, operators_1.map)((match) => {
+                    if (match) {
+                        const { password, ...result } = user;
+                        return result;
+                    }
+                    else {
+                        throw new common_1.HttpException('3 Wrong Credentials', common_1.HttpStatus.BAD_REQUEST);
+                    }
+                }));
+            }
+            throw new common_1.HttpException('4 Wrong Credentials', common_1.HttpStatus.NOT_FOUND);
         })));
     }
     findByEmail(email) {
-        return (0, rxjs_1.from)(this.userRepository.findOne({
+        const user = this.userRepository.findOne({
             select: ['id', 'name', 'email', 'role', 'profileImage', 'password'],
             where: { email: email },
-        }));
+        });
+        if (!user) {
+            throw new common_1.HttpException('5 User not found', common_1.HttpStatus.NOT_FOUND);
+        }
+        return (0, rxjs_1.from)(user);
     }
 };
 exports.UserService = UserService;
