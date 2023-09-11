@@ -18,6 +18,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatCardModule } from '@angular/material/card';
+import { MatBadgeModule } from '@angular/material/badge';
 
 // # librerias externas
 import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
@@ -33,6 +34,7 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
 import { ProductsComponent } from './components/products/products.component';
 import { ProductDetailComponent } from './components/product-detail/product-detail.component';
 import { HttpErrorInterceptor } from './interceptors/http-error.interceptor';
+import { ProductComponent } from './components/product/product.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +43,8 @@ import { HttpErrorInterceptor } from './interceptors/http-error.interceptor';
     RegisterComponent,
     UserProfileComponent,
     ProductsComponent,
-    ProductDetailComponent
+    ProductDetailComponent,
+    ProductComponent
   ],
   imports: [
     BrowserModule,
@@ -56,6 +59,7 @@ import { HttpErrorInterceptor } from './interceptors/http-error.interceptor';
     MatPaginatorModule,
     MatCardModule,
     MatSelectModule,
+    MatBadgeModule,
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule

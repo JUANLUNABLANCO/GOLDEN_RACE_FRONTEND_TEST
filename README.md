@@ -668,9 +668,10 @@ ng development                            5h
 NG Make and pass TESTS                    4H
 POSTMAN  Make and pass tests              3H
 E2E tests Cypress                         3H
+Linter                                    1H
 Others (investigations, queries, doubts)  3H
 -----------------------------------------------------
-total                                     28H for now
+total                                     29 H for now
 
 
 ##### Time to upload changes
@@ -681,18 +682,80 @@ git commit -m "ng testing, backend testing with postman, e2e tests with cypress,
 git push
 ```
 
+##### Let´s go with produts, prdouct, product-detail, products.service etc
+
+First in environment i put a 'api_url' variable, that get products from an external api, with images
+
+
+I created a service for products and an interface
+```bash
+ng g interface inetrfaces/product.interface
+ng g s services/products/products
+```
+I created a product component it will be part fo products component.
+I created a product-detail component for when we click on a product.
+
+```bash
+ng g c components/product
+ng g c components/product-detail
+```
+
+I created a card service that have a BehaviorSubject of an array of Products
+```bash
+ng g s services/cart/cart
+```
+In summary, this code defines a CartService class that is used to manage a shopping cart in our app. It allows adding products to the cart and notifying interested components about changes in the cart through the use of observables, thanks for Behavior Subject that it maintains and always emits the most recent value to its subscribers.
+```cart.service.ts
+export class CartService {
+
+  private products: Product[] = [];
+  private cart = new BehaviorSubject<Product[]>([]);
+
+  cart$ = this.cart.asObservable();
+
+  addCart(product: Product) {
+    this.products = [...this.products, product];
+    this.cart.next(this.products);
+  }
+}
+```
+I design some css with flex-box, and some 3d special effect with text
+
+##### Time to uploap
+
+```bash
+git status
+git add .
+git commit -m "products, product, @Input(), SubjectBehavior, product-detail, product-service, cart-service ,css flex-box, responsive"
+git push
+```
+
+##### Spending time so far
+
+Nest development                          10h
+ng development                            5h + 4h
+NG Make and pass TESTS                    4H
+POSTMAN  Make and pass tests              3H
+E2E tests Cypress                         3H
+Linter                                    1H
+CSS                                       1H
+Others (investigations, queries, doubts)  3H
+-----------------------------------------------------
+total                                     34 H for now
+
+
 // PENDIENTE PARA MAÑANA
+crea el compoenete home y ahí mete la lógica del ejercicio EXERCICE_01
 
-documentation
-delete all the console.logs
-
-products with images, ...
-product logic component of exercice1
 
 
 // POSIBLES MEJORAS
+delete all the console.logs
 sign-off
 si el login corresponde al admin conducirlo a '/admin', si es un usuario al profile del usuario
+
+
+
 
 
 

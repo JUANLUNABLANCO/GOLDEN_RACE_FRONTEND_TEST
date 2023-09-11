@@ -1,0 +1,23 @@
+.crop-image{
+  height: 300px;
+  width: 300px;
+  overflow: hidden;
+  position: relative;
+  img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+.product-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between; 
+  gap: 20px;
+}
+.product-card {
+  flex: 1;
+  max-width: 300px;
+  max-height: 400px;
+}

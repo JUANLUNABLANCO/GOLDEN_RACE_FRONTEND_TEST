@@ -11,6 +11,10 @@
     <button mat-flat-button class="link-button" routerLink = 'products' aria-label="Example icon-button with share icon">
       Store
     </button>
+    <button  mat-raised-button [matBadge]="total$ | async" matBadgeColor="warn">
+      <mat-icon>shopping_cart</mat-icon>
+      Carrito
+    </button>
     <mat-form-field style="margin-left: 16px; margin-top: 16px;" name="loginRegisterDropdown">
       <mat-select placeholder="Acceso" (selectionChange)="navigateTo($event.value)">
         <mat-option *ngFor="let entry of entries" [value]="entry.link">
