@@ -1,0 +1,75 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 20vh;
+  margin: 0;
+  background-color: #f0f0f0;
+}
+.text-3d {
+  font-size: 36px;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #333;
+  position: relative;
+  animation: moveText 5s infinite alternate;
+  z-index: 2; /* Coloca el texto sobre la imagen */
+}
+
+/* Estilos para la imagen con efecto parallax */
+.parallax {
+  max-height: 20vh; /* Altura máxima de la imagen */
+  overflow: hidden;
+  position: relative;
+}
+
+.parallax img {
+  width: 50%;
+  height: auto;
+  transform: translateZ(0);
+  transition: transform 0.4s ease; /* Agrega una transición suave */
+}
+
+/* Efecto parallax */
+.parallax:hover img {
+  transform: translateZ(-50px); /* Cambia la posición en el eje Z al pasar el mouse */
+}
+
+/* Some 3D effect animation */
+@keyframes moveText {
+  0% {
+    transform: translateX(0) translateZ(0);
+    text-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+  }
+  100% {
+    transform: translateX(20px) translateZ(20px);
+    text-shadow: 10px 10px 20px rgba(0, 0, 0, 0.4);
+  }
+}
+
+.product-grid {
+  display: flex;
+  flex-wrap: wrap; /* Allows elements to wrap when they don't fit in a row */
+  justify-content: flex-start; /* Distributes space at start */
+  gap: 20px; /* Space between products */
+}
+
+.product {
+  flex-basis: calc(33.33% - 20px); /* Initial width for 3 products per row (33.33% - space between them) */
+  background-color: #f0f0f0; /* Background color for each product (customize as needed) */
+  padding: 20px; /* Internal spacing for each product (adjust as needed) */
+}
+
+/* Media Query to make it responsive when the screen width is less than 1280px */
+@media (max-width: 1280px) {
+  .product {
+    flex-basis: calc(50% - 20px); /* Width for 2 products per row */
+  }
+}
+
+/* Media Query to make it responsive when the screen width is less than 768px */
+@media (max-width: 768px) {
+  .product {
+    flex-basis: 100%; /* Width for 1 product per row */
+  }
+}

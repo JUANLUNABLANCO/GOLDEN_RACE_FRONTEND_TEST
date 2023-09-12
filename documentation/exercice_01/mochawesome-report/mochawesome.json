@@ -1,0 +1,177 @@
+{
+  "stats": {
+    "suites": 2,
+    "tests": 4,
+    "passes": 4,
+    "pending": 0,
+    "failures": 0,
+    "start": "2023-09-11T11:25:57.438Z",
+    "end": "2023-09-11T11:26:10.356Z",
+    "duration": 12918,
+    "testsRegistered": 4,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "946a9916-6a21-490b-8eb8-6ff074727e56",
+      "title": "",
+      "fullFile": "cypress\\e2e\\User-Authentication\\07_register-login-components.cy.js",
+      "file": "cypress\\e2e\\User-Authentication\\07_register-login-components.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "64ac5341-5ab9-4b08-ba45-a62dda67235d",
+          "title": "Register Component",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "desde la interfaz \"http://localhost:4200/register\", creando usuario \"test\"",
+              "fullTitle": "Register Component desde la interfaz \"http://localhost:4200/register\", creando usuario \"test\"",
+              "timedOut": null,
+              "duration": 1639,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.task(\"queryDb\", \"DELETE from user_entity\"); // limpiar db\ncy.get('[data-test-id=\"nameField\"]').type('test');\ncy.get('[data-test-id=\"emailField\"]').type('test@gmail.com');\ncy.get('[data-test-id=\"passwordField\"]').type('test12345678');\ncy.get('[data-test-id=\"confirmPasswordField\"]').type('test12345678');\ncy.get('[data-test-id=\"submitButton\"]').should('not.be.disabled').click();",
+              "err": {},
+              "uuid": "08b5adca-6a6f-4337-8003-cbd1382cb1b7",
+              "parentUUID": "64ac5341-5ab9-4b08-ba45-a62dda67235d",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "desde la interfaz \"http://localhost:4200/register\", creando usuario \"test2\"",
+              "fullTitle": "Register Component desde la interfaz \"http://localhost:4200/register\", creando usuario \"test2\"",
+              "timedOut": null,
+              "duration": 1304,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.get('[data-test-id=\"nameField\"]').type('test2');\ncy.get('[data-test-id=\"emailField\"]').type('test2@gmail.com');\ncy.get('[data-test-id=\"passwordField\"]').type('test12345678');\ncy.get('[data-test-id=\"confirmPasswordField\"]').type('test12345678');\ncy.get('[data-test-id=\"submitButton\"]').should('not.be.disabled').click();",
+              "err": {},
+              "uuid": "82f12b26-c27d-4fb9-827f-5ff43fe27984",
+              "parentUUID": "64ac5341-5ab9-4b08-ba45-a62dda67235d",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "desde la interfaz \"http://localhost:4200/register\", creando usuario \"test22\". Comprobamos validación asíncrona",
+              "fullTitle": "Register Component desde la interfaz \"http://localhost:4200/register\", creando usuario \"test22\". Comprobamos validación asíncrona",
+              "timedOut": null,
+              "duration": 7694,
+              "state": "passed",
+              "speed": "medium",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.get('[data-test-id=\"nameField\"]').type('test22');\ncy.get('[data-test-id=\"emailField\"]').type('test2@g');\ncy.get('[data-test-id=\"passwordField\"]').focus().wait(2000);\ncy.get('[data-test-id=\"ErrorEmailUsed\"]').should('be.visible').contains('Ese correo electrónico, ya está siendo usado.').wait(2000); // este mensaje podría cambiar y sobre todo si tenemos idiomas en la página, con lo anterior va sobrado\n// corregimos datos\ncy.get('[data-test-id=\"emailField\"]').clear().type('test22@gmail.com');\ncy.get('[data-test-id=\"passwordField\"]').type('test12345678');\ncy.get('[data-test-id=\"confirmPasswordField\"]').type('test12345678');\ncy.get('[data-test-id=\"submitButton\"]').should('not.be.disabled').click().wait(2000); // este mensaje podría cambiar y sobre todo si tenemos idiomas en la página, con lo anterior va sobrado\n// llamemos a la base de datos a ver cuantos usuarios hay\ncy.task(\"queryDb\", \"SELECT * from user_entity\").then(results => {\n  // cy.log(results);\n  console.log(results);\n  expect(results.rows.length).to.eq(3);\n  expect(results.rows[2]).to.have.property('email', 'test22@gmail.com');\n});",
+              "err": {},
+              "uuid": "6bf79dea-db38-419c-8667-b39f823407c6",
+              "parentUUID": "64ac5341-5ab9-4b08-ba45-a62dda67235d",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "08b5adca-6a6f-4337-8003-cbd1382cb1b7",
+            "82f12b26-c27d-4fb9-827f-5ff43fe27984",
+            "6bf79dea-db38-419c-8667-b39f823407c6"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 10637,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        },
+        {
+          "uuid": "9a2f959c-210c-467c-ac40-a856c21ee4ab",
+          "title": "Login Component",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "desde la interfaz \"http://localhost:4200/login\", hagamos login con nuestro usuario \"test22@gmail.com\"",
+              "fullTitle": "Login Component desde la interfaz \"http://localhost:4200/login\", hagamos login con nuestro usuario \"test22@gmail.com\"",
+              "timedOut": null,
+              "duration": 995,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.get('[data-test-id=\"emailField\"]').type('test22@gmail.com');\ncy.get('[data-test-id=\"passwordField\"]').type('test12345678');\ncy.get('[data-test-id=\"submitButton\"]').should('not.be.disabled').click().then(resp => {\n  // console.log('## resp: ', resp);  // es un click de boton no un http response\n  cy.wrap(localStorage).invoke('getItem', 'access_token').should('exist');\n});",
+              "err": {},
+              "uuid": "b7d56cf0-05de-4be4-9b41-43aa6d6f735f",
+              "parentUUID": "9a2f959c-210c-467c-ac40-a856c21ee4ab",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "b7d56cf0-05de-4be4-9b41-43aa6d6f735f"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 995,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": null,
+      "version": "6.2.0"
+    }
+  }
+}
