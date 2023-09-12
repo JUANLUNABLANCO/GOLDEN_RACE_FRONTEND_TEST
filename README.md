@@ -102,6 +102,7 @@ npm run cypress:open
 
 [more info](./documentation/exercice_01/explainning-development.md)
 
+![exercice01-ui](./documentation/screenshoots/Screenshot_04_finish-exercice01.png)
 
 
 ## EXERCISE 2
