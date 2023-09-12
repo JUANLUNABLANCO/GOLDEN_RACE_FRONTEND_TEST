@@ -1,0 +1,10 @@
+<div class="container">
+  <div class="text-3d">Store 3D</div>
+</div>
+<div class="product-grid">
+  <app-product
+    *ngFor="let product of products"
+    (productClicked)="clickProduct($event)"
+    [product]="product">
+  </app-product>
+</div>
