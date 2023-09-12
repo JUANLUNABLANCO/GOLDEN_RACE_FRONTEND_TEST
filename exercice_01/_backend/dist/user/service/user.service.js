@@ -147,8 +147,6 @@ let UserService = class UserService {
                     .generateJWT(user)
                     .pipe((0, operators_1.map)((jwt) => jwt));
             }
-            else {
-            }
         }));
     }
     validateUser(email, password) {
@@ -162,7 +160,7 @@ let UserService = class UserService {
                         return result;
                     }
                     else {
-                        throw new common_1.HttpException('3 Wrong Credentials', common_1.HttpStatus.BAD_REQUEST);
+                        throw new common_1.HttpException('3 Wrong Credentials', common_1.HttpStatus.NOT_FOUND);
                     }
                 }));
             }

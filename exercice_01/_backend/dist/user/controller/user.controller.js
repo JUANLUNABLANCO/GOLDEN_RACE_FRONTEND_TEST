@@ -48,7 +48,7 @@ let UserController = class UserController {
     login(user) {
         return this.userService.login(user).pipe((0, rxjs_1.map)((jwt) => {
             return { access_token: jwt };
-        }));
+        }), (0, operators_1.catchError)((error) => (0, rxjs_1.throwError)(() => error)));
     }
     async logout(req) {
         return { message: 'Logged out successfully' };

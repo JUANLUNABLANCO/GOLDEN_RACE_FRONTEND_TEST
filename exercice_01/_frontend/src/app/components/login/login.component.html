@@ -16,5 +16,6 @@
     <div>
       <button mat-flat-button color="primary" type="submit" [disabled]="!formLogin.valid" data-test-id="submitButton">Enviar</button>
     </div>
+    <div class="error-message" [@fade] *ngIf="showErrorMessage" [ngClass]="{'show': showErrorMessage}">{{ errorMessage }}</div>
   </div>
 </form>

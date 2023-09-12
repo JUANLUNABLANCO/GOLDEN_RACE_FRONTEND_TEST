@@ -72,10 +72,10 @@ export class AppComponent {
     if (this.productForm.valid) {
       const product: Product = this.productForm.value as Product;
 
-      console.log('## PRODUCT: ', product);
+      // console.log('## PRODUCT: ', product);
       this.showSuccessMessage = true;
       this.successMessage = 'Product added successfully.';
-      // We are using an external api for that: But the structure of de data it´s alitle diferent
+      // We are using an external api for that: But the structure of de data it´s a litle diferent
       // {
       //   "title": "New Product",
       //   "price": 10,

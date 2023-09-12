@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { map, switchMap, tap } from 'rxjs/operators';
-import { Observable, of } from 'rxjs';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { catchError, map, switchMap, tap } from 'rxjs/operators';
+import { Observable, of, throwError } from 'rxjs';
 import { JwtDecoded, LoginForm, LoginResponse, RegisterForm, RegisterResponse, LogoutResponse } from '../../interfaces/auth.interface';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { UserRole } from '../../interfaces/user.interface'
@@ -23,10 +23,14 @@ export class AuthenticationService {
     // TODO cors desde el backend y api url en environment
     return this.http.post<LoginResponse>('/api/users/login', { email: loginForm.email, password: loginForm.password }).pipe(
       map((token) => {
-        // TODO servicio genérico para grabado y recuperación de datos de la app en el localStorage
         localStorage.setItem(JWT_NAME, token.access_token);
-        const userId = this.jwtHelper.decodeToken(token.access_token).user.id;
+        const decoded = this.jwtHelper.decodeToken(token.access_token);
+        const userId = decoded.user.id;
         return { token, userId };
+      }),
+      catchError((error: HttpErrorResponse) => {
+        // console.log('## ERROR:', error);
+        return throwError(()=> error);
       })
     );
   }
