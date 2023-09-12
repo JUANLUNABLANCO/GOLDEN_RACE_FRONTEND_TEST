@@ -53,8 +53,8 @@
         <span *ngIf="productForm.get('description').hasError('required')">Description is required.</span>
       </div>
     </div>
-    <button type="submit" [disabled]="productForm.invalid">Submit</button>
-    <button type="button" (click)="onReset()">Reset</button>
+    <button type="submit" [disabled]="productForm.invalid" class="custom-btn btn-1">Submit</button>
+    <button type="button" (click)="onReset()" class="custom-btn btn-11">Reset</button>
   </form>
   <div class="success-message" [@fade] *ngIf="showSuccessMessage" [ngClass]="{'show': showSuccessMessage}">{{ successMessage }}</div>
 </div>

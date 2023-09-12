@@ -18,6 +18,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ProductsService } from './services/products/products.service';
 import { HttpClientModule } from '@angular/common/http';
+import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
 
 describe('AppComponent and Product Reactive Form', () => {
   let component: AppComponent;
@@ -42,7 +43,11 @@ describe('AppComponent and Product Reactive Form', () => {
       FormsModule
     ],
     declarations: [AppComponent],
-    providers: [ProductsService]
+    providers: [
+      ProductsService,
+      JwtHelperService,
+      { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
+    ]
   }).compileComponents());
 
   beforeEach(() => {

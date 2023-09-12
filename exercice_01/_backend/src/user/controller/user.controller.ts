@@ -20,7 +20,7 @@ import {
 
 import { UserService } from '../service/user.service';
 import { User, UserRole, File } from '../model/user.interface';
-import { Observable, map, of, from, tap } from 'rxjs';
+import { Observable, map, of, from, tap, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { hasRoles } from '../../auth/decorators/roles.decorator';
 import { JwtAuthGuard } from '../../auth/guards/jwt.guard';
@@ -72,6 +72,7 @@ export class UserController {
       map((jwt: string) => {
         return { access_token: jwt };
       }),
+      catchError((error) => throwError(() => error)),
     );
   }
 

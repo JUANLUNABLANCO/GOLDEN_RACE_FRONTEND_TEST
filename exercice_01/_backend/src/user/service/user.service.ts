@@ -10,7 +10,7 @@ import { Repository } from 'typeorm';
 import { User, UserRole } from '../model/user.interface';
 
 import { Observable, from, throwError } from 'rxjs';
-import { switchMap, map, catchError } from 'rxjs/operators';
+import { switchMap, map, tap, catchError } from 'rxjs/operators';
 
 import { AuthService } from '../../auth/services/auth.service';
 import {
@@ -194,9 +194,8 @@ export class UserService {
           return this.authService
             .generateJWT(user)
             .pipe(map((jwt: string) => jwt));
-        } else {
-          // throw new NotFoundException('2 Wrong Credentials');
         }
+        // else no tiene sentido ya validateUser se encarga
       }),
     );
   }
@@ -220,7 +219,7 @@ export class UserService {
                   } else {
                     throw new HttpException(
                       '3 Wrong Credentials',
-                      HttpStatus.BAD_REQUEST,
+                      HttpStatus.NOT_FOUND,
                     );
                   }
                 }),

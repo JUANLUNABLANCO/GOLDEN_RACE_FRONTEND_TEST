@@ -1,1 +1,26 @@
-<p>user-profile works!</p>
+<div *ngIf="user; else notUser" class="main-div">
+  <mat-card class="card">
+    <mat-card-header>
+      <mat-card-title-group>
+      <mat-card-title data-test-id="nameField" >
+        Name: {{ user.name }} | id: {{ user.id }}
+      </mat-card-title>
+      <mat-card-subtitle>
+        {{ user.role }}
+      </mat-card-subtitle>
+      <div mat-card-avatar>
+        <img src="http://localhost:3000/api/users/profile-image/{{ user.profileImage }}" alt="avatar" *ngIf="user.profileImage; else notImageProfile"  class="avatar">
+        <ng-template #notImageProfile>
+          <img src="assets/images/avatar-default.png" class="avatar" alt="avatar image default">
+        </ng-template>
+      </div>
+      </mat-card-title-group>
+    </mat-card-header>
+    <mat-card-content>
+      {{ user.email }}
+    </mat-card-content>
+  </mat-card>
+</div>
+<ng-template #notUser>
+  No hay usuario con ese id: {{ userId }}
+</ng-template>

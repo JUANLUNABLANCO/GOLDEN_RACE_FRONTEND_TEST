@@ -20,6 +20,15 @@
   width: 100%;
 }
 
+.error-message {
+  background-color: #d62316;
+  color: white;
+  text-align: center;
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 5px;
+}
+
 @media screen and (min-width: 600px) {
   .container > * {
     width: 50%;

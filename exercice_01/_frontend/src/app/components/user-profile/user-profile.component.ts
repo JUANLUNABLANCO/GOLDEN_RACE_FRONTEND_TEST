@@ -27,6 +27,7 @@ export class UserProfileComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.subscription = this.activatedRoute.params.subscribe(params => {
       this.userId = parseInt(params['id']);
+      // console.log('## USERID: ', this.userId);
       this.userService.findOne(this.userId).pipe(map(
         (user: User) => this.user = user
       )).subscribe();
