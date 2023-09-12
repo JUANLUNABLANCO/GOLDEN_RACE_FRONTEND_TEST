@@ -18,4 +18,8 @@ export class CartService {
     this.products = [...this.products, product];
     this.cart.next(this.products);
   }
+  resetCart() {
+    this.products = [];
+    this.cart.next(this.products);
+  }
 }

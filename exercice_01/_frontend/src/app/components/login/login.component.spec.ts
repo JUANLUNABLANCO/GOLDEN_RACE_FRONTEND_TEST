@@ -4,6 +4,8 @@ import { LoginComponent } from './login.component';
 // import { AuthenticationService } from '../../services/auth/authentication.service';
 // import { Router } from '@angular/router';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { HttpClientModule } from '@angular/common/http';
+import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
 
 describe('LoginComponent', () => {
   let component: LoginComponent;
@@ -20,8 +22,11 @@ describe('LoginComponent', () => {
       imports: [
         ReactiveFormsModule,
         MatFormFieldModule,
+        HttpClientModule
       ],
       providers: [
+        JwtHelperService,
+        { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
         // { provide: AuthenticationService, useValue: authServiceSpy },
         // { provide: Router, useValue: routerSpy },
       ],

@@ -50,6 +50,9 @@ let UserController = class UserController {
             return { access_token: jwt };
         }));
     }
+    async logout(req) {
+        return { message: 'Logged out successfully' };
+    }
     findOne(params) {
         return this.userService.findOne(params.id);
     }
@@ -112,6 +115,14 @@ __decorate([
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", rxjs_1.Observable)
 ], UserController.prototype, "login", null);
+__decorate([
+    (0, common_1.Post)('logout'),
+    (0, common_1.UseGuards)(jwt_guard_1.JwtAuthGuard),
+    __param(0, (0, common_1.Req)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], UserController.prototype, "logout", null);
 __decorate([
     (0, common_1.Get)(':id'),
     __param(0, (0, common_1.Param)()),

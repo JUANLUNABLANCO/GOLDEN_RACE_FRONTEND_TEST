@@ -93,7 +93,7 @@ describe('RegisterComponent', () => {
     emailControl.setValue('test100000@gmail.com'); // this is a 99.99% probably email avalible
     expect(emailControl.valid).toBeTruthy();
 
-    authService.register.and.returnValue(of({})); // register ok, whe we recibed from Karma a of({})
+    authService.register.and.returnValue(of(null)); // register ok, whe we recibed from Karma a of({})
 
     component.onSubmit(component.formRegister); // we send the form with the valid values
 

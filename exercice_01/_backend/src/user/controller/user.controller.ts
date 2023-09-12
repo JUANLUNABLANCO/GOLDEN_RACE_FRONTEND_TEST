@@ -12,6 +12,7 @@ import {
   UploadedFile,
   Request,
   Response,
+  Req,
   NotFoundException,
   HttpException,
   HttpStatus,
@@ -72,6 +73,17 @@ export class UserController {
         return { access_token: jwt };
       }),
     );
+  }
+
+  @Post('logout')
+  @UseGuards(JwtAuthGuard)
+  async logout(@Req() req: Request) {
+    // Aquí debes invalidar o revocar el token JWT.
+    // Por ejemplo, puedes agregar el token a una lista negra en tu servicio de autenticación.
+    // O mejor aun, cambiar el token de la cabecera pasándole un tiempo de expiración de 1 ms
+    // Después de invalidar el token, el usuario debe ser redirigido o notificado de que la sesión ha finalizado.
+
+    return { message: 'Logged out successfully' };
   }
 
   @Get(':id')

@@ -2,9 +2,10 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map, switchMap, tap } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
-import { JwtDecoded, LoginForm, LoginResponse, RegisterForm, RegisterResponse } from '../../interfaces/auth.interface';
+import { JwtDecoded, LoginForm, LoginResponse, RegisterForm, RegisterResponse, LogoutResponse } from '../../interfaces/auth.interface';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { UserRole } from '../../interfaces/user.interface'
+import { CartService } from '../cart/cart.service';
 
 export const JWT_NAME = 'access_token';
 @Injectable({
@@ -14,7 +15,8 @@ export class AuthenticationService {
 
   constructor(
     private http: HttpClient,
-    private jwtHelper: JwtHelperService
+    private jwtHelper: JwtHelperService,
+    private cartService: CartService
   ) { }
 
   login(loginForm: LoginForm) {
@@ -25,6 +27,16 @@ export class AuthenticationService {
         localStorage.setItem(JWT_NAME, token.access_token);
         const userId = this.jwtHelper.decodeToken(token.access_token).user.id;
         return { token, userId };
+      })
+    );
+  }
+  logout() {
+    const jwt = localStorage.getItem(JWT_NAME);
+    return this.http.post<LogoutResponse>('/api/users/logout', jwt).pipe(
+      tap(()=>{
+        localStorage.removeItem(JWT_NAME);
+        // reset el cart
+        this.cartService.resetCart()
       })
     );
   }

@@ -20,8 +20,42 @@
         <mat-option *ngFor="let entry of entries" [value]="entry.link">
           {{ entry.name }}
         </mat-option>
+        <mat-option value="logout" (click)="logout()">Logout</mat-option>
       </mat-select>
     </mat-form-field>
   </mat-toolbar-row>
 </mat-toolbar>
+<div class="product-container" >
+  <h2>Add Product</h2>
+  <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="title">Name:</label>
+      <input type="text" id="title" formControlName="title">
+      <div class="error-message" *ngIf="productForm.get('title').invalid && (productForm.get('title').dirty || productForm.get('title').touched)">
+        <span *ngIf="productForm.get('title').hasError('required')">Name is required.</span>
+        <span *ngIf="productForm.get('title').hasError('minlength')">Name must be at least 5 characters.</span>
+        <span *ngIf="productForm.get('title').hasError('maxlength')">Name cannot exceed 20 characters.</span>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="price">Price:</label>
+      <input type="number" id="price" formControlName="price">
+      <div class="error-message" *ngIf="productForm.get('price').invalid && (productForm.get('price').dirty || productForm.get('price').touched)">
+        <span *ngIf="productForm.get('price').hasError('required')">Price is required.</span>
+        <span *ngIf="productForm.get('price').hasError('min')">Price must be greater than 5.</span>
+        <span *ngIf="productForm.get('price').hasError('max')">Price must be less than 20.</span>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="">Description:</label>
+      <input type="text" id="description" formControlName="description">
+      <div class="error-message" *ngIf="productForm.get('description').invalid && (productForm.get('description').dirty || productForm.get('description').touched)">
+        <span *ngIf="productForm.get('description').hasError('required')">Description is required.</span>
+      </div>
+    </div>
+    <button type="submit" [disabled]="productForm.invalid">Submit</button>
+    <button type="button" (click)="onReset()">Reset</button>
+  </form>
+  <div class="success-message" [@fade] *ngIf="showSuccessMessage" [ngClass]="{'show': showSuccessMessage}">{{ successMessage }}</div>
+</div>
 <router-outlet></router-outlet>

@@ -21,7 +21,7 @@ import { CartService } from './../../services/cart/cart.service';
 export class ProductComponent implements OnInit, OnChanges, AfterViewInit, OnDestroy {
 
   @Input() product: Product;
-  @Output() productClicked: EventEmitter<any> = new EventEmitter();
+  @Output() productClicked: EventEmitter<any> = new EventEmitter();  // TODO <any> it should change for a diferent type
 
   today = new Date();
 

@@ -16,6 +16,9 @@ export declare class UserController {
     login(user: User): Observable<{
         access_token: any;
     }>;
+    logout(req: Request): Promise<{
+        message: string;
+    }>;
     findOne(params: any): Observable<User>;
     findOneByEmail(user: User): Observable<User>;
     userExist(user: User): Observable<boolean>;

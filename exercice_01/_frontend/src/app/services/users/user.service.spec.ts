@@ -25,9 +25,9 @@ describe('UserService', () => {
     expect(userService).toBeTruthy();
   });
 
-  it('should check if a user exists', (done) => {
-    const email = 'test@example.com';
-    const mockResponse = { exists: true };
+  it('should check if a user exists. You must to creted first {name: "name", email: "test@gmail.com", password: "test12345678"}', (done) => {
+    const email = 'test@gmail.com';
+    const mockResponse = true;
 
     userService.userExist(email).subscribe((exists) => {
       expect(exists).toBe(true);

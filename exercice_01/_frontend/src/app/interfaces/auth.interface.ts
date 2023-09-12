@@ -18,6 +18,9 @@ export interface RegisterResponse {
   profileImage: null,
   id: number
 }
+export interface LogoutResponse {
+  message: string;
+}
 
 export interface JwtDecoded {
   user: {

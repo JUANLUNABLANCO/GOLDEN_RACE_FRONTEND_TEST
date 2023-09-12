@@ -33,6 +33,7 @@ export class ProductDetailComponent implements OnInit {
     });
   }
 
+  // CRUD example methods
   createProduct() {
     const newProduct: Product = {
       id: 222,
