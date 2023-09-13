@@ -68,6 +68,7 @@ import { ProductComponent } from './components/product/product.component';
     JwtHelperService,
     { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    // descommnet if you want to use it, to intercept errors from server hhtp responses
     // { provide: HTTP_INTERCEPTORS, useClass: HttpErrorInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]
