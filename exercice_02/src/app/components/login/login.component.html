@@ -1,0 +1,23 @@
+<h1 style="text-align: center;">Acceso de usuario</h1>
+<div class="container">
+<form [formGroup]="formLogin" (ngSubmit)="onSubmit(formLogin)">
+  <div class="">
+    <div class="form-field">
+      <input formControlName="email" type="email" placeholder="for example test@gmail.com" data-test-id="emailField">
+      <div class="error errorEmail clarify-text" >
+        Please provide a valid email.
+      </div>
+    </div>
+    <div class="form-field">
+      <input formControlName="password" type="password" placeholder="for example test1234" data-test-id="passwordField">
+      <div class="error errorPassword clarify-text" >
+        Please provide a valid password (minimun size 4).
+      </div>
+    </div>
+    <div>
+      <button type="submit" [disabled]="!isFormLoginValid()" data-test-id="submitButton" [ngClass]="{ 'custom-btn': true, 'btn-16': !isFormLoginValid(), 'btn-2': isFormLoginValid()}">Send</button>
+    </div>
+    <div class="success-message" *ngIf="showSuccessMessage" [@fade] [ngClass]="{'show': showSuccessMessage}">{{ successMessage }}</div>
+  </div>
+</form>
+</div>

@@ -1,0 +1,101 @@
+@import '../../../styles.scss';
+
+.container input {
+  width: 100%;
+  height: 40px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  margin-top: 10px;
+
+}
+.container button {
+  width: 100%;
+  float: right;
+  max-width: 130px;
+}
+form {
+  width: 300px;
+  border: 1px solid #ccc;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+}
+.form-group {
+  margin-bottom: 15px;
+}
+
+label {
+  font-weight: bold;
+}
+input[type="email"],
+input[type="password"] {
+  width: 100%;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+.show {
+  visibility: visible;
+}
+.hidden {
+  visibility: hidden;
+}
+.success-message {
+  background-color: #4CAF50;
+  color: white;
+  text-align: center;
+  padding: 10px;
+  margin-top: 110px;
+  border-radius: 5px;
+}
+// Error messages
+.error {
+  color: $text-color-errors;
+  font-size: 12px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+
+.errorEmail {
+  display: none; // Hide the error message by default
+  // Add other necessary styles for the email error message
+}
+
+.errorPassword {
+  display: none; // Hide the error message by default
+  // Add other necessary styles for the password error message
+}
+.clarify-text {
+  letter-spacing: 1px; /* Increase letter spacing */
+  word-spacing: 2px; /* Increase word spacing */
+  line-height: 1.5; /* Increase line height */
+  font-family: Arial, sans-serif; /* Optionally, change the font family */
+  text-transform: uppercase; /* Transform text to uppercase */
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5); /* Add subtle text shadow */
+  word-break: break-all; /* Control word breaking for long words */
+  overflow-wrap: break-word; /* Control overflow of long words */
+  text-align: justify; /* Justify the text */
+  padding-top: 5px; /* Add padding at the top */
+  padding-bottom: 5px; /* Add padding at the bottom */
+}
+
+// Style to highlight the field with an error
+.ng-invalid.ng-touched {
+  border: 1px solid $text-color-errors; // $text-color-errors border style for invalid fields
+}
+
+// Style to display the error message next to the field
+.ng-invalid.ng-touched + .error {
+  display: block; // Show the error message when the field is invalid and touched
+}
+
+@media screen and (min-width: 600px) {
+  .container > * {
+    width: 50%;
+  }
+}
+@media screen and (min-width: 1024px) {
+  .container > * {
+    width: 30%;
+  }
+}
