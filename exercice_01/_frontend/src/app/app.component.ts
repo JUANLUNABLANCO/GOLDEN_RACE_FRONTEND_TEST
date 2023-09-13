@@ -62,8 +62,9 @@ export class AppComponent {
     });
   }
   // Menu logic
-  navigateTo(value: string) {
-    this.router.navigate(['../', value]);
+  navigateTo(event: EventTarget | null) {
+    if (event)
+    this.router.navigate(['../', event.target.value]);
   }
   logout(): void{
     this.authService.logout().subscribe((data)=> console.log(data.message));

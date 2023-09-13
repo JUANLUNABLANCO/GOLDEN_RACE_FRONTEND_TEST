@@ -115,7 +115,10 @@ npm run cypress:open
 - Add two navigation links on the AppComponent to test both routes
 
 ### FUNCTIONING
+
 ### MORE INFO ABOUT DEVELOPMENT
+[more info](./documentation/exercice_02/explainning-development.md)
+
 
 
 ### EXERCISE 3
