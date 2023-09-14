@@ -260,10 +260,10 @@ Now, we have achieved an 80% coverage, which is excellent.
 
 ## Time spent on the development of this exercise.
 
-code ng 5H  
+code ng 5H
 test ng 6H  (coverage 80%)
 scss    7H  (without relying on frameworks.)
-others  2H  
+others  2H
 __________
 Total   20 H
 

@@ -1,0 +1,33 @@
+.info {
+  text-align: center;
+  padding-bottom: 1em;
+  border-bottom: 1px solid #555;
+}
+.info > div {
+  display: inline-block;
+  width: 200px;
+}
+.info > div .label {
+  margin-right: 5px;
+}
+.info > div .value {
+  font-weight: bold;
+}
+.info {
+	text-align: center;
+	padding-bottom: 1em;
+	border-bottom: 1px solid #555;
+	
+	> div {
+		display: inline-block;
+		width: 200px;
+		
+		.label {
+			margin-right: 5px;
+		}
+		
+		.value {
+			font-weight: bold;
+		}
+	}
+}

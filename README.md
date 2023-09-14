@@ -115,6 +115,25 @@ npm run cypress:open
 - Add two navigation links on the AppComponent to test both routes
 
 ### FUNCTIONING
+ng serve --open
+```bash
+cd exercice_02
+npm run start
+```
+
+ng build
+```bash
+cd exercice_02
+npm run build
+```
+others scripts
+```js
+  scripts: [
+    "watch": "ng build --watch --configuration development",
+    "test": "ng test",
+    "test:coverage": "ng test --code-coverage"
+  ]
+```
 
 ### MORE INFO ABOUT DEVELOPMENT
 [more info](./documentation/exercice_02/explainning-development.md)
@@ -129,6 +148,26 @@ npm run cypress:open
 - Implement unit tests for the component
 
 ### FUNCTIONING
+
+ng serve --open
+```bash
+cd exercice_02
+npm run start
+```
+
+ng build
+```bash
+cd exercice_02
+npm run build
+```
+others scripts
+```js
+  scripts: [
+    "watch": "ng build --watch --configuration development",
+    "test": "ng test",
+    "test:coverage": "ng test --code-coverage"
+  ]
+```
 ### MORE INFO ABOUT DEVELOPMENT
 
 ### EXERCISE 4

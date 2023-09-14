@@ -1,0 +1,7 @@
+<div class="dark-light-toggle">
+  <span class="text-3d">{{ modeMessage }}</span>
+  <label class="switch" for="themeToggle">
+    <input id="themeToggle" class="switch__input" type="checkbox" data-theme-toggle  [(ngModel)]="isDarkMode" (change)="toggleTheme()">
+    <span class="switch__slider"></span>
+  </label>  
+</div>

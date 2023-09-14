@@ -5,18 +5,18 @@
       <button class="custom-btn btn-4" routerLink="/lazy">Lazy</button>
       <button class="custom-btn btn-3" (click)="onSecureButtonClick()">Secure</button>
     </nav>
-</header>
-<main>
-  <div class="access-denied-message" *ngIf="showAccessDeniedMessage" [@fade] [ngClass]="{'show': showAccessDeniedMessage}">{{ accessDeniedMessage }}</div>
-  <div class="form-field" style="margin-left: 16px; margin-top: 16px;" name="menuDropdown">
-    <select (change)="onSelectChange($event)">
-      <option value="home">Home</option>
-      <option value="login">Login</option>
-      <option value="logout">Logout</option>
-    </select>
-  </div>
-</main>
-<router-outlet></router-outlet>
-<footer>
-<H3>FOOTER</H3>
-</footer>
+  </header>
+  <main>
+    <div class="access-denied-message" *ngIf="showAccessDeniedMessage" [@fade] [ngClass]="{'show': showAccessDeniedMessage}">{{ accessDeniedMessage }}</div>
+    <div class="form-field" style="margin-left: 16px; margin-top: 16px;" name="menuDropdown">
+      <select (change)="onSelectChange($event)">
+        <option value="home">Home</option>
+        <option value="login">Login</option>
+        <option value="logout">Logout</option>
+      </select>
+    </div>
+  </main>
+  <router-outlet></router-outlet>
+  <footer>
+  <H3>FOOTER</H3>
+  </footer>

@@ -1,0 +1,8 @@
+<button (click)="engineTimer()" 
+        [ngClass]="{ 
+            'custom-btn': true,
+            'btn-4': engineButtonState == 'stop',
+            'btn-5': engineButtonState == 'init'
+        }" >
+    {{ stateTextButton }}
+    </button>
