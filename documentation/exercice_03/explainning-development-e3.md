@@ -188,3 +188,6 @@ The application will be available at `http://localhost:4200`. You can access it 
 Please note that this is a high-level overview of the steps. You will need to implement the details and styling according to your project's requirements.
 
 
+## finish exercice_03
+![finish-exercice-03](../screenshoots/Screenshot_12_random-timer-number.png)
+
