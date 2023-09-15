@@ -1,0 +1,262 @@
+// // ******************************* reset **************************
+// // Tema claro
+:root {
+  --primary-color: #6200ee;
+  --primary-variant-color: #3700b3;
+  --secondary-color: #03dac6;
+  --secondary-variant-color: #018786;
+  --background-color: #ffffff;
+  --surface-color: #fafafa;
+  --error-color: #b00020;
+  --text-color: #333333;
+  --text-color-light: #353232;
+  // Header Sizes
+  --h1-size: 36px;
+  --h2-size: 30px;
+  --h3-size: 24px;
+  --h4-size: 20px;
+  --h5-size: 18px;
+  --h6-size: 16px;
+}
+
+/* dark-theme.scss */
+
+/* Variables de colores para el tema oscuro */
+@dark-primary-color: #000000;
+@dark-primary-variant-color: #333333;
+@dark-secondary-color: #03dac6;
+@dark-secondary-variant-color: #018786;
+@dark-background-color: #0a0310;
+@dark-surface-color: #333333;
+@dark-error-color: #cf6679;
+@dark-text-color: #ffffff;
+@dark-text-color-light: #fafafa;
+
+// _reset.scss (Estilos de reinicio)
+// Establece los valores predeterminados
+html,
+body,
+div,
+p,
+h1,
+h2,
+h3,
+ul,
+li {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font-size: 100%;
+  font-weight: normal;
+  vertical-align: baseline;
+  background: transparent;
+  text-decoration: none;
+}
+
+// Configuración adicional de estilos para una mejor consistencia
+body {
+  line-height: 1;
+  font-family: Arial, sans-serif;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  overflow-y: auto;
+}
+
+ul {
+  list-style: none;
+}
+
+// Header Styles
+h1 {
+  font-size: var(--h1-size);
+  color: var(--text-color-light);
+}
+
+h2 {
+  font-size: var(--h2-size);
+  color: var(--text-color-light);
+}
+
+h3 {
+  font-size: var(--h3-size);
+  color: var(--text-color-light);
+}
+
+h4 {
+  font-size: var(--h4-size);
+  color: var(--text-color-light);
+}
+
+h5 {
+  font-size: var(--h5-size);
+  color: var(--text-color-light);
+}
+
+h6 {
+  font-size: var(--h6-size);
+  color: var(--text-color-light);
+}
+
+// Variables
+@background-color: var(--background-color);
+@text-color: var(--text-color);
+@border-color: red;
+@primary-color: blueviolet;
+@max-container-width: 900px;
+@spacing: 10px;
+@header-height: 10vh;
+@sidebar-height: 20vh;
+@featured-height: 35vh;
+@article-border-color: rgb(255, 158, 47);
+@card-border-color: rgb(116, 47, 255);
+@min-card-width: 200px;
+@max-mobile-width: 600px;
+
+// Mixins
+.resizing-box-100() {
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.letters-theme-primary() {
+  padding: 14px;
+  font-weight: 700;
+  color: @primary-color;
+}
+
+// Estilos generales
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: @background-color;
+  font-family: Arial, sans-serif;
+  color: @text-color;
+  height: 100vh;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.container {
+  border: 1px solid @border-color;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: @max-container-width;
+  overflow: hidden;
+}
+
+/* Stacking elements on mobile devices */
+.header, .sidebar, .main, .right-content .featured, .image-a, .image-b {
+  border: @spacing solid greenyellow;
+  margin: @spacing;
+  .resizing-box-100();
+}
+
+.header {
+  .letters-theme-primary();
+  font-size: 1rem;
+  height: @header-height;
+  width: 100vw;
+}
+
+.main {
+  border: 1px solid @border-color;
+}
+
+.sidebar {
+  .letters-theme-primary();
+  height: @sidebar-height;
+  width: 100vw;
+}
+
+.right-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.featured {
+  height: @featured-height;
+  width: 100vw;
+}
+
+.articles {
+  border: 5px solid @article-border-color;
+  height: calc(@featured-height - @spacing);
+  width: 100vw;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-image {
+  border: 5px solid @card-border-color;
+  margin: @spacing;
+  min-width: calc(@min-card-width - 2 * @spacing);
+  height: calc(@featured-height - 2 * @spacing);
+}
+
+@media (max-width: @max-mobile-width) {
+  .container {
+    width: 100vw;
+    max-width: @max-mobile-width;
+    margin: 0;
+    overflow-x: hidden;
+  }
+}
+
+@media (min-width: @max-container-width) {
+  .container * {
+    max-width: @max-container-width;
+  }
+  .main {
+    height: 90vh;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
+  .sidebar {
+    height: 90vh;
+    width: calc(@max-container-width / 3);
+    border: @spacing solid @border-color !important;
+  }
+  .right-content {
+    height: 90vh;
+  }
+  .featured {
+    min-height: 40vh;
+    width: calc(@max-container-width - @max-container-width / 3);
+  }
+  .articles {
+    border: 12px solid #494849;
+    min-height: calc(50vh - 30px);
+    height: calc(50vh);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: calc(@max-container-width - @max-container-width / 3);
+  }
+  .card-image {
+    height: 45vh;
+    max-height: calc(50vh - @spacing);
+    width: calc((@max-container-width - @max-container-width / 3) / 2 - @spacing);
+  }
+}
+
+
+
+
