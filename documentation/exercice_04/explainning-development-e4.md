@@ -136,20 +136,53 @@ At the end the structure with components, should be like this
 </app-root>
 ```
 
+In the end, the layout, so that the components are properly absorbed by the layout, will look like this.
+
+```html
+<div class="container">
+  <app-header>Header Works</app-header>
+  <!-- <main class="main"> -->
+    <app-main>
+      <!-- Main Works!! -->
+      <!-- <aside class="sidebar"> -->
+        <app-sidebar>
+          sidebar Works!!
+        </app-sidebar>
+  <!-- </aside> -->
+      <div class="right-content" > 
+        <!-- Right content -->
+        <!-- <section class="featured"> -->
+
+          <app-featured>Featured works!</app-featured>
+        <!-- </section> -->
+        <!-- <section class="articles"> -->
+          <app-articles>
+            <!-- Articles Works -->
+            <!-- <article class="card-image"> -->
+              <app-card-image>CARD-IMAGE: Image A</app-card-image>
+            <!-- </article> -->
+            <!-- <article> -->
+              <app-card-image>CARD iMAGE: Image B</app-card-image>
+            <!-- </article> -->
+          </app-articles>
+        <!-- </section> -->
+      </div>
+    </app-main>
+  <!-- </main> -->
+</div>
+```
+
 In this way we can take advantage of the semantics of HTML tags, important for SEO and also all the advantages that the development of components from Angular gives us, separating the logic of each of them.
 
+And all the commented-out code is absorbed by the component as follows:
 
+```html
+<main class="main">
+  <ng-content></ng-content>
+</main>
+```
 
-
-
-
-
-
-
-
-
-
-**Step X: Run the application**
+**Step 4: Run the application**
 
 You can now run the Angular application using the following command:
 
@@ -161,7 +194,16 @@ The application will be available at `http://localhost:4200`. You can access it 
 
 Please note that this is a high-level overview of the steps. You will need to implement the details and styling according to your project's requirements.
 
-
+## Estimated hours
+ng      1h
+css     2h
+browser 1h
+__________
+total   4h
 ## finish exercice_04
-// TODO  ![finish-exercice-04](../screenshoots/ )
+![finish-exercice-04-ui-400px-max](../screenshoots/Screenshot_14_ui-400max.png)
+
+![finish-exercice-04-ui-900px-min](../screenshoots/Screenshot_13_ui-900min.png)
+
+
 
