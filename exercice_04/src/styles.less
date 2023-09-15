@@ -108,110 +108,135 @@
 }
 
 // // Estilos generales
-// body {
-//   background-color: var(--background-color);
-//   font-family: Arial, sans-serif;
-//   color: var(--text-color);
-//   height: 100vh; // Height equal to the maximum device size
-//   margin: 0;     // Remove margin to fill all available space
-//   overflow-y: hidden; // Add a vertical scrollbar if content is taller than the device height
-//   display: flex;
-//   flex-direction: column;
-//   align-items: center; 
-// }
+body {
+  background-color: var(--background-color);
+  font-family: Arial, sans-serif;
+  color: var(--text-color);
+  height: 100vh; // Height equal to the maximum device size
+  margin: 0;     // Remove margin to fill all available space
+  // overflow-y: hidden; // Add a vertical scrollbar if content is taller than the device height
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+}
 
 // Mixins
-.center-container {
+.resizing-box-100 {
   max-width: 100%;
   margin: 0 auto;
 }
+.letters-theme-primary {
+  padding: 14px;
+  font-weight: 700;
+  color:blueviolet;
+}
 
 .container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   border: 1px solid red;
   width: 100%;
   height: 100vh;
-  align-items: stretch;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  // align-items: stretch;
+  width: 900px;
 }
+
 /* Apilar elementos en dispositivos móviles */
 .header, .sidebar, .main, .right-content .featured, .image-a, .image-b {
   border: 10px solid greenyellow;
   margin: 10px;
-  .center-container();
-}
-.right-content {
-  border: 10px solid yellow;
-  margin: 10px;
-  .center-container();
+  .resizing-box-100(); // max width 100% - with of the border and margin
 }
 .header {
-  padding: 14px;
-  font-size: 1rem;
-  font-weight: 700;
-  color:blueviolet;
+  .letters-theme-primary(); // color, font-weight, padding
   font-size: 1rem;
   height: 10vh;
+  width: 100vw;
 }
 .main {
-  height: 90vh;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: left;
+  border: 1px solid red;
 }
 .sidebar {
-  height: 90vh;
-  width: 30vw;
-  border: 10px solid red !important;
+  .letters-theme-primary();
+  height: 20vh;
+  width: 100vw;
 }
-.right-content{
-  height: 90vh;
-  width: 70vw;
+.right-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  // justify-content: center;
 }
 .featured {
-  min-height: 40vh;
+  height: 35vh;
+  width:100vw;
 }
 .articles {
-  border: 12px solid #494849;
-  min-height: calc(50vh - 30px);
-  max-height: calc(50vh - 30px);;
+  border: 5px solid rgb(255, 158, 47);
+  height: calc(35vh - 10px);
+  width: 100vw;
+  max-width: ;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
 }
 .card-image {
-  border: 5px solid greenyellow;
+  border: 5px solid rgb(116, 47, 255);
   margin: 5px;
-  min-width: calc(35vw - 40px);
-  height: calc(50vh - 60px);
+  min-width: calc(200px - 20px);
+  width: calc(50vw - 10px);
+  height: calc(35vh - 20px);
 }
-
-
-
-
 
 @media (max-width: 600px) {
-  // .container {
-  
-  //   width: 900px;
-  //   margin: 0;
-  //   overflow-x: hidden;
-  // }
-  
-  // .header, .sidebar, .main, .articles, .featured, .image-a, .image-b {
-  //   border: 10px solid greenyellow;
-  //   margin: 10px;
-  //   .center-container();
-  // }
+  .container {
+    width: 100vw;
+    max-width: 600px;
+    margin: 0;
+    overflow-x: hidden;
+  }
 }
 
-@media (max-width: 900px) {
-  // .container {
-  //   align-items: stretch; /* Revertir al estiramiento predeterminado */
-  // }
+@media (min-width: 900px) {
+  .container * {
+    max-width: 900px;
+  }
+  .main {
+    height: 90vh;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
+  .sidebar {
+    height: 90vh;
+    width: calc(900px / 3);
+    border: 10px solid red !important;
+  }
+  .right-content{
+    height: 90vh;
+  }
+  .featured {
+    min-height: 40vh;
+    width: calc(900px - 900px / 3);
+  }
+  .articles {
+    border: 12px solid #494849;
+    min-height: calc(50vh - 30px);
+    height: calc(50vh );
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: calc(900px - 900px / 3);
+  }
+  .card-image {
+    height: 45vh;
+    max-height: calc(50vh - 10px);
+    width: calc((900px - 900px / 3) / 2 - 10px);
+  }
 }
 
 
