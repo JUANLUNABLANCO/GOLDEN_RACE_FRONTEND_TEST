@@ -138,9 +138,11 @@ others scripts
 ### MORE INFO ABOUT DEVELOPMENT
 [more info](./documentation/exercice_02/explainning-development.md)
 
+![ui frontend aspect](./documentation/screenshoots/Screenshot_07_finish-exercice02.png)
 
 
-### EXERCISE 3
+
+## EXERCISE 3
 
 - Modify the DataService getNumbers method to return a random integer number between 0 and 10, once per second
 - Implement unit tests for the service
@@ -151,26 +153,29 @@ others scripts
 
 ng serve --open
 ```bash
-cd exercice_02
+cd exercice_03
 npm run start
 ```
 
 ng build
 ```bash
-cd exercice_02
+cd exercice_03
 npm run build
 ```
 others scripts
 ```js
   scripts: [
     "watch": "ng build --watch --configuration development",
-    "test": "ng test",
-    "test:coverage": "ng test --code-coverage"
+    "test": "ng test"
   ]
 ```
 ### MORE INFO ABOUT DEVELOPMENT
+[more info exercice 03](./documentation/exercice_03/explainning-development-e3.md)
 
-### EXERCISE 4
+![ui frontend aspect exercice 03](./documentation/screenshoots/Screenshot_12_random-timer-number.png)
+
+
+## EXERCISE 4
 
 - Transform the AppComponent to match the attached image by using flex or grid
 - No CSS frameworks or external dependencies are allowed
@@ -178,14 +183,37 @@ others scripts
 - When the viewport width is bigger than 900px, center the content
 - When the viewport width is smaller than 400px, print all the elements stacked in the following order: Header, Sidebar, Featured, A, B
 
-![layout](./projects/exercise4/src/assets/layout.png)
+![layout](./documentation/exercice_04/layout.png)
 
 
 ### FUNCTIONING
+
+ng serve --open
+```bash
+cd exercice_03
+npm run start
+```
+
+ng build
+```bash
+cd exercice_03
+npm run build
+```
+others scripts
+```js
+  scripts: [
+    "watch": "ng build --watch --configuration development",
+    "test": "ng test"
+  ]
+```
+
 ### MORE INFO ABOUT DEVELOPMENT
+[more info exercice 04](./documentation/exercice_04/explainning-development-e4.md)
+
+// TODO ![ui frontend aspect](./documentation/screenshoots/  <FALTA ESTO> )
 
 ## Conclusions
-
+// TODO
 ### SOLID PRINCIPLES APPLICATED IN NG PROJECT
 1. Single Responsibility Principle (SRP):
 
@@ -213,3 +241,11 @@ Dependency Injection (DI): Angular promotes dependency inversion through its dep
 
 6. 2. Separation of Concerns: Angular encourages the separation of concerns by using components to separate presentation logic from business logic. Services are used to handle business logic in isolation.
 
+// TODO todo esto de abajao
+### GIT WORKFLOW
+### DOCKERIZATION
+### TESTING
+### TDD
+### SCRUM
+### ASANA
+### ENLACES DE INTERÉS
