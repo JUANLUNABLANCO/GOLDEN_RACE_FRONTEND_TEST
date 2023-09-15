@@ -1,1 +1,218 @@
-/* You can add global styles to this file, and also import other style files */
+// // ******************************* reset **************************
+// // Tema claro
+// :root {
+//   --primary-color: #6200ee;
+//   --primary-variant-color: #3700b3;
+//   --secondary-color: #03dac6;
+//   --secondary-variant-color: #018786;
+//   --background-color: #ffffff;
+//   --surface-color: #fafafa;
+//   --error-color: #b00020;
+//   --text-color: #333333;
+//   --text-color-light: #353232;
+//   // Header Sizes
+//   --h1-size: 36px;
+//   --h2-size: 30px;
+//   --h3-size: 24px;
+//   --h4-size: 20px;
+//   --h5-size: 18px;
+//   --h6-size: 16px;
+// }
+
+// /* dark-theme.scss */
+
+// /* Variables de colores para el tema oscuro */
+// @dark-primary-color: #000000;
+// @dark-primary-variant-color: #333333;
+// @dark-secondary-color: #03dac6;
+// @dark-secondary-variant-color: #018786;
+// @dark-background-color: #0a0310;
+// @dark-surface-color: #333333;
+// @dark-error-color: #cf6679;
+// @dark-text-color: #ffffff;
+// @dark-text-color-light: #fafafa;
+
+// // _reset.scss (Estilos de reinicio)
+// // Establece los valores predeterminados
+// html,
+// body,
+// div,
+// p,
+// h1,
+// h2,
+// h3,
+// ul,
+// li {
+//   margin: 0;
+//   padding: 0;
+//   border: 0;
+//   outline: 0;
+//   font-size: 100%;
+//   font-weight: normal;
+//   vertical-align: baseline;
+//   background: transparent;
+//   text-decoration: none;
+// }
+
+// // Configuración adicional de estilos para una mejor consistencia
+// body {
+//   line-height: 1;
+//   font-family: Arial, sans-serif;
+//   background-color: var(--background-color);
+//   color: var(--text-color);
+//   overflow-y: auto;
+// }
+
+// ul {
+//   list-style: none;
+// }
+
+// // Header Styles
+// h1 {
+//   font-size: var(--h1-size);
+//   color: var(--text-color-light);
+// }
+
+// h2 {
+//   font-size: var(--h2-size);
+//   color: var(--text-color-light);
+// }
+
+// h3 {
+//   font-size: var(--h3-size);
+//   color: var(--text-color-light);
+// }
+
+// h4 {
+//   font-size: var(--h4-size);
+//   color: var(--text-color-light);
+// }
+
+// h5 {
+//   font-size: var(--h5-size);
+//   color: var(--text-color-light);
+// }
+
+// h6 {
+//   font-size: var(--h6-size);
+//   color: var(--text-color-light);
+// }
+
+// // Reset CSS
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+// // Estilos generales
+// body {
+//   background-color: var(--background-color);
+//   font-family: Arial, sans-serif;
+//   color: var(--text-color);
+//   height: 100vh; // Height equal to the maximum device size
+//   margin: 0;     // Remove margin to fill all available space
+//   overflow-y: hidden; // Add a vertical scrollbar if content is taller than the device height
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center; 
+// }
+
+// Mixins
+.center-container {
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid red;
+  width: 100%;
+  height: 100vh;
+  align-items: stretch;
+}
+/* Apilar elementos en dispositivos móviles */
+.header, .sidebar, .main, .right-content .featured, .image-a, .image-b {
+  border: 10px solid greenyellow;
+  margin: 10px;
+  .center-container();
+}
+.right-content {
+  border: 10px solid yellow;
+  margin: 10px;
+  .center-container();
+}
+.header {
+  padding: 14px;
+  font-size: 1rem;
+  font-weight: 700;
+  color:blueviolet;
+  font-size: 1rem;
+  height: 10vh;
+}
+.main {
+  height: 90vh;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: left;
+}
+.sidebar {
+  height: 90vh;
+  width: 30vw;
+  border: 10px solid red !important;
+}
+.right-content{
+  height: 90vh;
+  width: 70vw;
+}
+.featured {
+  min-height: 40vh;
+}
+.articles {
+  border: 12px solid #494849;
+  min-height: calc(50vh - 30px);
+  max-height: calc(50vh - 30px);;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.card-image {
+  border: 5px solid greenyellow;
+  margin: 5px;
+  min-width: calc(35vw - 40px);
+  height: calc(50vh - 60px);
+}
+
+
+
+
+
+@media (max-width: 600px) {
+  // .container {
+  
+  //   width: 900px;
+  //   margin: 0;
+  //   overflow-x: hidden;
+  // }
+  
+  // .header, .sidebar, .main, .articles, .featured, .image-a, .image-b {
+  //   border: 10px solid greenyellow;
+  //   margin: 10px;
+  //   .center-container();
+  // }
+}
+
+@media (max-width: 900px) {
+  // .container {
+  //   align-items: stretch; /* Revertir al estiramiento predeterminado */
+  // }
+}
+
+
+
