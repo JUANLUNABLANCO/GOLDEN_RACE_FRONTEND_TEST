@@ -62,7 +62,7 @@ export class AppComponent {
     });
   }
   // Menu logic
-  navigateTo(event: EventTarget | null) {
+  navigateTo(event: any | null) {
     if (event)
     this.router.navigate(['../', event.target.value]);
   }
