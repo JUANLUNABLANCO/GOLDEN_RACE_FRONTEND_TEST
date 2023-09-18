@@ -62,9 +62,10 @@ export class AppComponent {
     });
   }
   // Menu logic
-  navigateTo(event: any | null) {
-    if (event)
-    this.router.navigate(['../', event.target.value]);
+  navigateTo(value: any | null) {
+    if (value)
+    console.log(value);
+    this.router.navigate(['../', value]);
   }
   logout(): void{
     this.authService.logout().subscribe((data)=> console.log(data.message));
